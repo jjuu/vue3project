@@ -1,77 +1,45 @@
 # Vue 3 + TypeScript + Vite
 
-引用：https://juejin.cn/post/7023712777457893389
+**参考：**
+https://github.com/element-plus/element-plus/issues/11818
+https://developer.aliyun.com/article/1284159
 
-1. 插件为对象时，需要提供install方法
+**当引入ElMessage时**
 ```ts
-const demo = {
-	// 参数为对象时，需要提供install方法
-    install: (Vue) => {
-        console.log('自定义插件', Vue);
-        // 定义一些vue中常用的全局方法
-		Vue.prototype.$Toast = () => { console.log('全局toast提示') }; // toast提示,通过this.$Toast调用
-		Vue.prototype.$request = () => { console.log('全局request请求') }; // request请求,通过this.$request调用
-    }
+import { ElMessage } from 'element-plus'
+```
+
+**报错如下：**
+Vue: Module "element-plus" has no exported member ElMessage. Did you mean to use import ElMessage from "element-plus" instead?
+
+1. 安装@vue/tsconfig@0.7.0
+```bash
+pnpm install @vue/tsconfig -D
+```
+
+2. 在tsconfig.json里，添加如下配置
+```json
+{
+  "extends": "@vue/tsconfig/tsconfig.json"  
 }
-
-export default demo;    // 这里export的是一个对象，名字为demo
 ```
 
-main.js中通过Vue.use安装自定义的demo插件：
-```ts
-import Vue from 'vue';
-import App from './App';
-import router from './router';
-import store from './store';
-
-import demo from './lib/demo';  // 引入自定义插件并安装
-Vue.use(demo); // 安装自定义插件
-
-/* eslint-disable no-new */
-// 把vue实例挂载在window.vm,方便使用vue的实例
-window.vm = new Vue({
-  el: '#app',
-  router,
-  store,
-  components: {
-    App,
-  },
-  template: '<App/>',
-});
-
+**原因：**
+```text
+@vue/tsconfig/tsconfig.json
 ```
+1. **扩展了这个推荐的配置解决了问题。**
+ - 这是一个 TypeScript 配置文件，由 `@vue/tsconfig` 提供，它是和 Vue 3 一起使用的官方共享 TypeScript 设置包。
+ - 它包含了一些适用于 Vue 项目的推荐配置，比如 Vue 文件的类型支持、模板的类型检查、默认路径别名等。
+ - 使用这个基础配置，可以减少手动配置 TypeScript 的复杂性，同时保证与 Vue 官方推荐设置一致。
+
+2. **实际作用**：
+ - 当配置中使用 `"extends": "@vue/tsconfig/tsconfig.json"` 时，项目将继承 `@vue/tsconfig` 中定义的所有配置。你只需要根据自己的需要再定义一些额外的规则，或者覆盖某些选项。
+ （可能是某些配置不对）
 
 
-2. 接下来是 Vue.use参数为函数（插件为函数）时
-```ts
-const common = (Vue) => {
-  console.log('自定义插件', Vue);
-  // 定义一些vue中常用的全局方法
-  Vue.prototype.$Toast = () => { console.log('全局toast提示') }; // toast提示,通过this.$Toast调用
-  Vue.prototype.$request = () => { console.log('全局request请求') }; // request请求,通过this.$request调用
-};
-export default common;  // 自定义插件是一个函数，名字为common
+```text
+安装 @vue/tsconfig
 ```
+`@vue/tsconfig` 是 Vue 官方提供的一个共享 TypeScript 配置包。它的主要作用是为了让 Vue 项目能够快速使用官方推荐的 TypeScript 配置，而无需开发者手动配置大量选项，是一种**简化配置和提高一致性**的手段。
 
-main.js中通过Vue.use安装自定义的common插件：
-```ts
-import Vue from 'vue';
-import App from './App';
-import router from './router';
-import store from './store';
-
-import common from './lib/common';  // 引入自定义插件并安装
-Vue.use(common); // 安装自定义插件
-
-/* eslint-disable no-new */
-// 把vue实例挂载在window.vm,方便使用vue的实例
-window.vm = new Vue({
-  el: '#app',
-  router,
-  store,
-  components: {
-    App,
-  },
-  template: '<App/>',
-});
-```
