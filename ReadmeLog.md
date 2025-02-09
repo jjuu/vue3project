@@ -14,7 +14,7 @@ const demo = {
     }
 }
 
-export default demo;    // NOTE: 这里export的是一个对象，名字为demo
+export default demo;    // 这里export的是一个对象，名字为demo
 ```
 
 main.js中通过Vue.use安装自定义的demo插件：
@@ -24,7 +24,7 @@ import App from './App';
 import router from './router';
 import store from './store';
 
-import demo from './lib/demo';  // NOTE: 引入自定义插件并安装
+import demo from './lib/demo';  // 引入自定义插件并安装
 Vue.use(demo); // 安装自定义插件
 
 /* eslint-disable no-new */
@@ -60,7 +60,7 @@ import App from './App';
 import router from './router';
 import store from './store';
 
-import common from './lib/common';  // NOTE: 引入自定义插件并安装
+import common from './lib/common';  // 引入自定义插件并安装
 Vue.use(common); // 安装自定义插件
 
 /* eslint-disable no-new */
