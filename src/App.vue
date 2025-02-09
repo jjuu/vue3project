@@ -4,14 +4,16 @@
 
 <template>
   <div>
-    <SvgIcon class="aa-SvgIcon" name="phone"/>
+    <h1>测试代码</h1>
 
-    <svg-icon class="bb-SvgIcon" name="home"></svg-icon>
-    <Pagination></Pagination>
   </div>
 
 </template>
 
-<style scoped>
-
+<style scoped lang="scss">
+  div {
+    h1 {
+      color: $color;  // $color为 scss 的全局变量。
+    }
+  }
 </style>
