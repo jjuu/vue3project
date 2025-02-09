@@ -1,12 +1,15 @@
 
 import { createApp } from 'vue'
-// import { zhCn } from 'element-plus/es/locale/index.mjs'
 
 import App from '@/App.vue'
-// import MyPerson from './components/MyPerson.vue'
+// import { zhCn } from 'element-plus/es/locale'
 
-import ElementPlus from 'element-plus'  // 引入element-plus插件
+  // 引入element-plus插件
+import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+
+// 在 src/main.ts 内引入注册脚本
+import 'virtual:svg-icons-register'
 
 import './style.css'
 
