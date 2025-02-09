@@ -20,5 +20,15 @@ const app = createApp(App)
 app.use(ElementPlus, {
     // locale: zhCn
 })
+
+// 注册为全局组件 NOTE: 注册为全局组件后不需要在单独注册组件了
+// import SvgIcon from '@/components/SvgIcon/index.vue'
+// app.component('SvgIcon', SvgIcon)
+
+// 引入自定义插件对象:注册整个项目全局组件
+import gloalComponent from '@/components'
+//安装自定义插件
+app.use(gloalComponent)     // NOTE: 注册为全局组件后一定要用use方法声明使用
+ 
 // 中文
 app.mount('#app')
