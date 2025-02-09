@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Delete, Edit, Plus } from '@element-plus/icons-vue';
-// import { use } from 'echarts';
+import SvnIcon from '@/components/SvgIcon/index.vue'
 
 </script>
 
@@ -19,6 +19,9 @@ import { Delete, Edit, Plus } from '@element-plus/icons-vue';
     <svg style="height: 30px; width: 30px;">
       <use xlink:href="#icon-phone"></use>
     </svg>
+    <br>
+    <SvnIcon name="home"/>
+    <svg-icon name="home"></svg-icon>
   </div>
 
 </template>
