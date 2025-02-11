@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import request from "@/utils/request.ts";
+import request from "@/utils/request";
 import {onMounted} from "vue";
 
 // 当组件挂载完毕，发一个请求
