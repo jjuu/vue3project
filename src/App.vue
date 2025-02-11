@@ -1,21 +1,14 @@
 <script setup lang="ts">
 import request from "@/utils/request";
 import {onMounted} from "vue";
+import {reqLogin} from './api/user'
 
 // 当组件挂载完毕，发一个请求
 onMounted(() => {
   console.log('发送请求');
-  request({
-    url: '/api/user/login',
-    method: 'post',
-    data: {
-      username: 'admin',
-      password: '111111'
-    }
-  }).then(res => {
-    console.log(res);
-  })
-})
+  reqLogin({username: 'admin', password: '111111'})
+  
+});
 </script>
 
 <template>

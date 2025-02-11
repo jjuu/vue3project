@@ -2,8 +2,6 @@
 
 import axios from 'axios'
 
-// NOTE: 昨天解决的问题今天又报错，不知道抽了什么风
-// NOTE: 这个问题的出现是因为IDE的ts版本过高，改成和工程一样的版本就解决了
 import { ElMessage } from 'element-plus'
 
 //第一步:利用axios对象的create方法,去创建axios实例(其他的配置:基础路径、超时的时间)
