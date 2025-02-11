@@ -1,5 +1,12 @@
 # Vue 3 + TypeScript + Vite
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## 1. 路由: 学习插件vue-router的使用。
+- 一级路由：登录
+- 一级路由：home页面
+- 404
+- 任意路由
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## 2. 
+- 在App.vue里用`<router-view></router-view>`引入路由导航。
+- 在`src/router`里配置的URL和页面的映射关系。这个和别的web项目的路由配置类似。
+- 在`src/views`下面写了所有的vue页面。这些页面是在`src/router`里映射过来的。
