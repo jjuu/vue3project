@@ -1,3 +1,4 @@
+## 主要流程
 - #1: 引入pinia库。
 - #2: 用`createPinia`创建pinia实例。
 - #3: 定义`user`类。需要登录之后返回一个token。后将token存储在localStorage里。
