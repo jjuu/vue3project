@@ -26,9 +26,13 @@ app.use(globalComponent); // 注册为全局组件后一定要用use方法声明
 //引入模板的全局的样式
 import "@/styles/index.scss";
 
-// NOTE: 注册路由
+// 注册路由
 import router from "./router";
 app.use(router);
+
+// 引入仓库
+import pinia from "./store";
+app.use(pinia);
 
 // 把#app绑定到vue实例上
 app.mount("#app");
