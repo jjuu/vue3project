@@ -4,7 +4,7 @@
 - #3: 定义`user`类。需要登录之后返回一个token。后将token存储在localStorage里。
 - #4: 写了用户登录的逻辑，使用了#3中定义的user类。
 
-## 1. **引入pinia库**
+### 1. **引入pinia库**
 在`src/main.ts`中，引入pinia。
 ```ts
 // 引入仓库
@@ -12,7 +12,7 @@ import pinia from "./store";
 app.use(pinia);
 ```
 
-## 2. **创建仓库，并对外暴露**
+### 2. **创建仓库，并对外暴露**
 `src/store/index.ts`
 创建仓库并对外暴露。
 ```ts
@@ -27,7 +27,7 @@ let pinia = createPinia();
 export default pinia;
 ```
 
-## 3. **定义user类**
+### 3. **定义user类**
 `src/store/modules/user.ts`
 创建用户的仓库，定义了一个用户类。写了一个`userLogin`的方法，用于登录用户。
 
@@ -80,7 +80,7 @@ let useUserStore = defineStore("User", {
 export default useUserStore;
 ```
 
-## 4. **用户登录页面**
+### 4. **用户登录页面**
 `src/store/modules/user.ts`
 写了用户登录的逻辑。调用#3中定义的登录逻辑。
 ```ts
