@@ -38,6 +38,8 @@ let loginForm = reactive({ username: 'admin', password: '111111' });
 
 // 引入用户相关的仓库
 import useUserStore from '@/store/modules/user';
+import { getTime } from '@/utils/time';
+import { time } from 'echarts';
 
 let userStore = useUserStore();
 
@@ -63,10 +65,12 @@ const login = async () => {
 
         // 编程式导航跳转到展示数据的首页
         $router.push('/');
+
         // 登录成功的提示信息
         ElNotification({
             type: 'success',
-            message: '登录成功'
+            message: '登录成功',
+            title: `Hi, ${getTime()}好`,
         });
     } catch (error) {
         // 登录失败，加载效果消失
@@ -79,9 +83,8 @@ const login = async () => {
         });
 
     }
-
-
 }
+
 
 </script>
 
