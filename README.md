@@ -1,18 +1,20 @@
 ## 主要流程
-- #1: 增加对登录时间的判断。
-- #2: 用`createPinia`创建pinia实例。
-- #3: 定义`user`类。需要登录之后返回一个token。后将token存储在localStorage里。
-- #4: 写了用户登录的逻辑，使用了#3中定义的user类。
+- #1: 定义校验规则
+- #2: 校验规则不通过则不走下面的流程
 
-### 1. **增加对登录时间的判断**
-在`src/utils/time.ts`中，增加了对登录时间的判断。
-
-### 2. **修改ElNotification根据时间的不同，给出不同的问候语**
-`src/views/login/index.vue`
+### 1. **定义一些校验规则来校验表单数据** （`src/views/login/index.vue`）
+#### 增加了一些表单校验规则。
+- 通过配置`rules`为`<el-form :rules="rules" >`元素绑定一些规则来校验字段。
+- 但是这个规则只能校验一些简单的，无法校验那些复杂的（复杂的要写自定义校验）。
 ```ts
-ElNotification({
-    type: 'success',
-    message: '登录成功',
-    title: `Hi, ${getTime()}好`,
-});
+const rules = {...}
+```
+
+### 2. **校验不通过则不走下面的login流程** （`src/views/login/index.vue`）
+
+通过`await loginForms.value.validate();`来验证校验是否通过。
+- validate方法返回的是Promise对象。不通过会抛出错误。
+
+```ts
+await loginForms.value.validate();
 ```

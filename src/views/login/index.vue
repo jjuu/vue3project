@@ -4,14 +4,14 @@
             <!-- 「:xs="0"」：屏幕的宽度小于等于768的时候一份不占 -->
             <el-col :span="12" :xs="0"></el-col>
             <el-col :span="12" :xs="24">
-                <el-form class="login_form">
+                <el-form class="login_form" :model="loginForm" :rules="rules" ref="loginForms">
                     <h1>Hello</h1>
                     <h2>欢迎来到硅谷甄选</h2>
-                    <el-form-item>
+                    <el-form-item prop="username">
                         <el-input :prefix-icon="User" v-model="loginForm.username"></el-input>
                     </el-form-item>
 
-                    <el-form-item>
+                    <el-form-item prop="password">
                         <el-input type="password" :prefix-icon="Lock" v-model="loginForm.password"
                             show-password></el-input>
                     </el-form-item>
@@ -39,7 +39,6 @@ let loginForm = reactive({ username: 'admin', password: '111111' });
 // 引入用户相关的仓库
 import useUserStore from '@/store/modules/user';
 import { getTime } from '@/utils/time';
-import { time } from 'echarts';
 
 let userStore = useUserStore();
 
@@ -49,7 +48,13 @@ let $router = useRouter();
 // 定义变量，控制按钮加载效果
 let loading = ref(false);
 
+// 引用了<el-form>元素
+let loginForms = ref();
+
 const login = async () => {
+    // 在login后面的程序执行之前，保证全部的表单校验通过再发请求
+    await loginForms.value.validate();
+
     // 加载效果
     loading.value = true;
 
@@ -85,7 +90,21 @@ const login = async () => {
     }
 }
 
-
+const rules = {
+    // 规则对象属性：required代表这个字段务必要校验
+    // min: 文本长度至少多少位
+    // max: 文本长度最多多少位
+    // trigger: 出发校验表单的时机 
+    //      change：文本发生变化触发校验
+    //      blur: 失去焦点的时候触发校验规则
+    username: [
+        {required: true, message: '用户名不能为空。', trigger: ['blur']},
+        {required: true, min: 6, max: 10, message: '帐号长度至少6位', trigger: ['change']},
+    ],
+    password: [
+        {required: true, min:6, max:15, message: '密码的长度至少6位', trigger: ['change']}
+    ],
+}
 </script>
 
 <style scoped lang="scss">
