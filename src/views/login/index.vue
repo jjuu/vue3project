@@ -90,6 +90,35 @@ const login = async () => {
     }
 }
 
+/**
+ * 自定义的校验规则函数
+ * @param rule  校验规则对象
+ * @param value 表单输入的文本内容
+ * @param callback 回调函数，如果通过则调用
+ */
+const validateUserName = (rule: any, value: any, callback: any) => {
+    // rule: 
+    if (value.length >= 5) {
+        callback();
+    } else {
+        callback(new Error('帐号长度至少5位'));
+    }
+}
+
+/**
+ * 自定义的校验规则函数
+ * @param rule 
+ * @param value 
+ * @param callback 
+ */
+const validatePassword = (rule: any, value: any, callback: any) => {
+    if (value.length < 6) {
+        callback();
+    } else {
+        callback(new Error('密码长度至少6位'));
+    }
+}
+
 const rules = {
     // 规则对象属性：required代表这个字段务必要校验
     // min: 文本长度至少多少位
@@ -98,11 +127,13 @@ const rules = {
     //      change：文本发生变化触发校验
     //      blur: 失去焦点的时候触发校验规则
     username: [
-        {required: true, message: '用户名不能为空。', trigger: ['blur']},
-        {required: true, min: 6, max: 10, message: '帐号长度至少6位', trigger: ['change']},
+        // {required: true, message: '用户名不能为空。', trigger: ['blur']},
+        // {required: true, min: 6, max: 10, message: '帐号长度至少6位', trigger: ['change']},
+        {trigger: 'change', validator: validateUserName},
     ],
     password: [
-        {required: true, min:6, max:15, message: '密码的长度至少6位', trigger: ['change']}
+        // {required: true, min:6, max:15, message: '密码的长度至少6位', trigger: ['change']},
+        {trigger: 'change', validator: validatePassword}
     ],
 }
 </script>
