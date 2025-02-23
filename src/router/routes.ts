@@ -10,7 +10,8 @@ export const constantRoute = [
   {
     // 登录成功展示数据的路由（主页）
     path: "/",
-    component: () => import("@/views/home/index.vue"),
+    // component: () => import("@/views/home/index.vue"),
+    component: () => import("@/layout/index.vue"),  // 替换成layout下面的index.vue
     name: "layout",
   },
   {

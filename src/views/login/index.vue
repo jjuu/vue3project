@@ -112,7 +112,7 @@ const validateUserName = (rule: any, value: any, callback: any) => {
  * @param callback 
  */
 const validatePassword = (rule: any, value: any, callback: any) => {
-    if (value.length < 6) {
+    if (value.length <= 6) {
         callback();
     } else {
         callback(new Error('密码长度至少6位'));
